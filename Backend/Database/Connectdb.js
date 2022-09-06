@@ -9,7 +9,7 @@ exports.connectMongoose=()=>{
 
 const userschema= new mongoose.Schema({
 
-    name:String,
+    username:String,
     email:{
         type:String,
         required: true,
