@@ -24,14 +24,27 @@ app.post('/', (req, res) => {
 app.get("/register",(req,res)=>{
   res.send("This is registe2");
 })
-app.post('/register', async(req, res) => {
-    // const user=await User.findOne({email:req.body.email});
-    // if(user) return res.status(400).send("User already exists");
-
-    // const newUser= await User.create(req.body) ;
-    // res.status(201).send(newUser);
+app.post('/register', (req, res) => {
+    
     console.log("lol");
     console.log(req.body);
+    const {username,email,password}=req.body;
+    // User.findOne({password:password},(err,user)=>{
+    //     console.log("This is ",user);
+    // })
+    const user1=new User({
+      username,
+      email,
+      password
+    });
+    user1.save((err)=>{
+      if(err){
+        res.send(err);
+      }
+      else{
+        res.send("Registered Successfully");
+      }
+    });
     
 })
 
