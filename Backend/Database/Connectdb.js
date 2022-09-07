@@ -9,11 +9,15 @@ exports.connectMongoose=()=>{
 
 const userschema= new mongoose.Schema({
 
-    username:String,
+    
     email:{
         type:String,
         required: true,
         unique:true
+    },
+    username:{
+        type:String,
+        unique:false,
     },
     password: String
 
