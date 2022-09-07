@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import axios from "axios"
-import "./Registercss1.css"
-
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axios from "axios";
+import "./Registercss1.css";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -11,8 +11,7 @@ function Register() {
   const [formValue, setformValue] = useState(initialState);
   const [formErrors, setFormErrors] = useState({});
   const [issubmit, setissubmit] = useState(false);
-  const [routeok, setrouteok] = useState("/register");
-
+  let history = useNavigate();
 
   const handleonchange = (event) => {
 
@@ -55,15 +54,15 @@ function Register() {
     }
 
 
-  }, [formErrors])
+  }, [formErrors,formValue,issubmit])
 
   const registerprocess = () => {
     if (validate(formValue).email === undefined && validate(formValue).username === undefined && validate(formValue).password === undefined) {
       // const { username, email, password } = formValue;
-      console.log("lol");
       axios.post("http://localhost:5000/register", formValue)
-        .then(res=>console.log(res))
-        setrouteok("/login");
+        .then(res=>{
+          // history.push("/login");
+        })
     }
 
       // console.log("up");
