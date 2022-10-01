@@ -27,7 +27,8 @@ app.post("/login", (req, res)=> {
   User.findOne({ email: email}, (err, user) => {
       if(user){
           if(password === user.password ) {
-              res.send({message: "Login Successfull", user: user})
+              // res.send({message: "Login Successfull", user: user});
+              res.send("OK");
           } else {
               res.send({ message: "Password didn't match"})
           }
@@ -45,14 +46,11 @@ app.get("/register", (req, res) => {
 
 
 app.post("/register", (req, res) => {
-  const {  email,username, password } = req.body
-  
+  const {  email,username, password } = req.body;
   User.findOne({ email: email }, (err, user) => {
     if (user) {
-      
       res.send({ message: "User already registerd" })
     } else {
-      
       const user = new User({
         email,
         username,
@@ -60,9 +58,10 @@ app.post("/register", (req, res) => {
       })
       user.save(err => {
         if (err) {
-          res.send(err)
+          console.log("This is error lol")
+          res.send(err);
         } else {
-          res.send({ message: "Successfully Registered, Please login now." })
+          res.send({ message: "Successfully Registered, Please login now." });
         }
       })
     }
