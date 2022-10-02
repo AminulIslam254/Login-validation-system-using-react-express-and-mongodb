@@ -65,7 +65,7 @@ function Login() {
           console.log("DOWN");
           if(res.data==="OK")
           {
-              navigate("/");
+              navigate("/home");
           }
         });
     }
